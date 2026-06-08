@@ -49,6 +49,7 @@ export function useVoiceChat() {
           id: "",
           role: "assistant" as const,
           text: result.text,
+          audioB64: result.audio_b64,
           corrections: result.corrections,
           vocabularySuggestions: result.vocabulary_suggestions,
           timestamp: Date.now(),

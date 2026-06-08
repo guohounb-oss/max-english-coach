@@ -4,6 +4,7 @@ export interface Message {
   id: string;
   role: "user" | "assistant";
   text: string;
+  audioB64?: string;
   corrections?: Correction[];
   vocabularySuggestions?: VocabularySuggestion[];
   timestamp: number;

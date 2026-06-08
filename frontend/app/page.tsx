@@ -104,6 +104,7 @@ export default function Home() {
               <ChatBubble
                 role={msg.role}
                 text={msg.text}
+                audioB64={msg.audioB64}
                 isPlaying={isSpeaking && i === messages.length - 1}
               />
               {prevCorrections && prevCorrections.length > 0 && (
