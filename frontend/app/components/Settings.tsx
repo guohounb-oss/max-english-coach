@@ -8,12 +8,18 @@ import { X } from "lucide-react";
 
 const LEVELS = ["beginner", "elementary", "intermediate", "upper-intermediate", "advanced"];
 const MODES = [
-  { value: "free_conversation", label: "Free Conversation" },
-  { value: "business_english", label: "Business English" },
-  { value: "travel_english", label: "Travel English" },
-  { value: "interview_practice", label: "Interview Practice" },
-  { value: "american_slang", label: "American Slang" },
-  { value: "pronunciation_practice", label: "Pronunciation" },
+  // 对话模式
+  { value: "free_conversation", label: "💬 Free Chat" },
+  { value: "business_english", label: "💼 Business" },
+  { value: "travel_english", label: "✈️ Travel" },
+  { value: "interview_practice", label: "🎤 Interview" },
+  { value: "american_slang", label: "🇺🇸 Slang" },
+  { value: "pronunciation_practice", label: "🗣️ Pronunciation" },
+  // 教学工具
+  { value: "daily_course", label: "📅 Daily Course" },
+  { value: "flashcards", label: "🃏 Flashcards" },
+  { value: "grammar_decoder", label: "📖 Grammar Decoder" },
+  { value: "quiz_assessment", label: "📝 Quiz" },
 ];
 const FREQUENCIES = [
   { value: "low", label: "Low — Major errors only" },

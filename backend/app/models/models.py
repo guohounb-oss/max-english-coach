@@ -104,3 +104,18 @@ class FluencyScore(Base):
     recorded_at: Mapped[datetime.datetime] = mapped_column(
         DateTime, default=datetime.datetime.utcnow
     )
+
+
+class WordBook(Base):
+    __tablename__ = "wordbook"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"))
+    word: Mapped[str] = mapped_column(String(100))
+    chinese: Mapped[str] = mapped_column(String(200), default="")
+    pronunciation: Mapped[str] = mapped_column(String(200), default="")
+    example: Mapped[str] = mapped_column(Text, default="")
+    stars: Mapped[int] = mapped_column(Integer, default=0)  # 1-5 星
+    created_at: Mapped[datetime.datetime] = mapped_column(
+        DateTime, default=datetime.datetime.utcnow
+    )

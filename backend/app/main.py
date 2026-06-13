@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from app.core.config import get_settings
 from app.db.sqlite import init_db
-from app.routes import voice, memory, dashboard
+from app.routes import voice, memory, dashboard, words
 
 settings = get_settings()
 
@@ -37,6 +37,7 @@ app.add_middleware(
 app.include_router(voice.router)
 app.include_router(memory.router)
 app.include_router(dashboard.router)
+app.include_router(words.router)
 
 
 @app.get("/api/health")

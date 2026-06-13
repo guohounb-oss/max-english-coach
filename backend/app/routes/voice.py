@@ -42,6 +42,9 @@ async def voice_chat(
         vocab_learned = memory.get_vocabulary_learned_str(db, user_id)
 
         # 3. 构建系统提示词
+        # Get wordbook words for frequency boost
+        wordbook_words = memory.get_wordbook_words_str(db, user_id)
+
         system_prompt = prompt_svc.build_system_prompt(
             student_name=user.name,
             english_level=user.english_level,
@@ -50,6 +53,7 @@ async def voice_chat(
             vocabulary_learned=vocab_learned,
             correction_frequency=user.correction_frequency,
             learning_mode=mode,
+            wordbook_words=wordbook_words,
         )
 
         # 4. 获取对话历史

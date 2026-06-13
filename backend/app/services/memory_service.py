@@ -10,6 +10,7 @@ from app.models.models import (
     Vocabulary,
     GrammarMistake,
     FluencyScore,
+    WordBook,
 )
 from app.db.chroma import (
     get_conversation_collection,
@@ -277,3 +278,20 @@ class MemoryService:
         except Exception:
             pass
         return []
+
+    def get_wordbook_words_str(self, db: Session, user_id: int) -> str:
+        """获取生词本中高星级词汇，注入到提示词中提高出现频率"""
+        result = db.execute(
+            select(WordBook)
+            .where(WordBook.user_id == user_id)
+            .order_by(WordBook.stars.desc(), WordBook.created_at.desc())
+            .limit(20)
+        )
+        words = result.scalars().all()
+        if not words:
+            return ""
+
+        high_star = [f"⭐{w.stars} {w.word}" for w in words if w.stars >= 3]
+        low_star = [w.word for w in words if w.stars < 3]
+        all_words = high_star + low_star
+        return ", ".join(all_words[:15])

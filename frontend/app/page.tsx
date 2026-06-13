@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStore } from "../lib/store";
 import { useVoiceChat } from "../hooks/useVoiceChat";
 import { fetchUser } from "../lib/api";
@@ -11,7 +11,8 @@ import { VocabularyCard } from "./components/VocabularyCard";
 import { Dashboard } from "./components/Dashboard";
 import { Settings } from "./components/Settings";
 import { Button } from "./components/ui/button";
-import { BarChart3, Settings as SettingsIcon, MessageCircle } from "lucide-react";
+import { Wordbook } from "./components/Wordbook";
+import { BarChart3, Settings as SettingsIcon, MessageCircle, BookOpen } from "lucide-react";
 
 export default function Home() {
   const {
@@ -27,6 +28,7 @@ export default function Home() {
     useVoiceChat();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [showWordbook, setShowWordbook] = useState(false);
 
   // Load user settings on mount
   useEffect(() => {
@@ -62,6 +64,9 @@ export default function Home() {
           </p>
         </div>
         <div className="flex items-center gap-1">
+          <Button variant="ghost" size="sm" onClick={() => setShowWordbook(true)} title="Wordbook">
+            <BookOpen className="w-4 h-4" />
+          </Button>
           <Button variant="ghost" size="sm" onClick={toggleDashboard}>
             <BarChart3 className="w-4 h-4" />
           </Button>
@@ -153,6 +158,9 @@ export default function Home() {
       {/* Modals */}
       <Dashboard />
       <Settings />
+      {showWordbook && (
+        <Wordbook onClose={() => setShowWordbook(false)} />
+      )}
     </div>
   );
 }
